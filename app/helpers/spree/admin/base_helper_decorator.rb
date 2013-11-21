@@ -7,7 +7,7 @@ module Spree
         options[:class] = '' unless options[:class]
         options[:class] += 'no-text with-tip' if options[:no_text]
         options[:nest] = '' unless options[:nest]
-        url = f.object.persisted? ? [:admin, options[:nest], f.object] : '#'
+        url = f.object.persisted? ? options[:nest].blank? ? [:admin, f.object] : [:admin, options[:nest], f.object] : '#'
         link_to_with_icon('icon-trash', name, url, :class => "remove_fields #{options[:class]}", :data => {:action => 'remove'}, :title => t(:remove)) + f.hidden_field(:_destroy)
       end
     end
